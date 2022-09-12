@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('listaProdutos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('descricao')->nullable();
+            $table->integer('ativo');
             $table->timestamps();
         });
     }

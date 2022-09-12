@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('tipoProdutos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('descricao')->nullable();
+            $table->integer('ativo');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *  $table->string('nome');
+            
      *
      * @return void
      */

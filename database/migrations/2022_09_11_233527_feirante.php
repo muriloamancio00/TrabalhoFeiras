@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('feirantes', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('senha');
+            $table->string('email');
+            $table->integer('ativo');
             $table->timestamps();
         });
     }

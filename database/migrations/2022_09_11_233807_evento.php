@@ -13,13 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bancas', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->string('descricao')->nullable();
+            $table->string('horario');
+            $table->double('valor')->nullable();
+            $table->integer('numeroPessoas')->nullable();
+            $table->unsignedBigInteger('id_TipoEvento');
+            $table->foreign('id_TipoEvento')->references('id')->on('tipoEventos');
+            $table->unsignedBigInteger('id_Administrador');
+            $table->foreign('id_Administrador')->references('id')->on('administradores');
             $table->unsignedBigInteger('id_Feira');
-            $table->unsignedBigInteger('id_ListaProduto')->nullable();
             $table->foreign('id_Feira')->references('id')->on('feiras');
-            $table->foreign('id_ListaProduto')->references('id')->on('listaProdutos');
             $table->integer('ativo');
             $table->timestamps();
         });
@@ -32,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bancas');
+        Schema::dropIfExists('eventos');
     }
 };
