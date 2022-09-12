@@ -24,8 +24,7 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *  $table->string('nome');
-            
+     *    
      *
      * @return void
      */

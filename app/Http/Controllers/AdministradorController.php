@@ -14,7 +14,9 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        //
+        $administrador = Administrador::all();
+
+        return view('administradores.index', compact(['administrador']));
     }
 
     /**
@@ -24,7 +26,7 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('administradores.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class AdministradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Administrador::create([
+            "nome" => mb_strtoupper($request->nome),
+            "senha" => ($request->senha),
+            "email" => ($request->email),
+        ]);
+
+        return redirect()->route('administradores.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class AdministradorController extends Controller
      */
     public function show(Administrador $administrador)
     {
-        //
+        return view('administradores.show', compact(['administrador']));
     }
 
     /**
@@ -57,7 +65,7 @@ class AdministradorController extends Controller
      */
     public function edit(Administrador $administrador)
     {
-        //
+        return view('administradores.edit', compact(['administrador']));
     }
 
     /**
@@ -69,7 +77,13 @@ class AdministradorController extends Controller
      */
     public function update(Request $request, Administrador $administrador)
     {
-        //
+        $administrador->update([
+            "nome" => mb_strtoupper($request->nome),
+            "senha" => ($request->senha),
+            "email" => ($request->email)
+        ]);
+
+        return redirect()->route('administradores.index');
     }
 
     /**
@@ -80,6 +94,8 @@ class AdministradorController extends Controller
      */
     public function destroy(Administrador $administrador)
     {
-        //
+        $administrador->delete();
+
+        return redirect()->route('administradores.index');
     }
 }
